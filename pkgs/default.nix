@@ -14871,9 +14871,11 @@ aeson
 base
 bytestring
 cardano-sl-block
+cardano-sl-block-test
 cardano-sl-core
 cardano-sl-crypto
 cardano-sl-crypto-test
+cardano-sl-db
 cardano-sl-infra
 cardano-sl-lrc
 cardano-sl-networking
