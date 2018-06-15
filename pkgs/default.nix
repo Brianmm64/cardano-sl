@@ -14849,7 +14849,6 @@ lens
 mtl
 network-transport
 network-transport-inmemory
-network-transport-tcp
 pipes
 pvss
 QuickCheck
