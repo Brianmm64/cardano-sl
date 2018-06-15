@@ -310,6 +310,9 @@ getProcessBlocks pm diffusion nodeId desired checkpoints = do
           when exitedRecovery $
               logInfo "Recovery mode exited gracefully on receiving block we needed"
 
+-- Attempts to catch up by streaming blocks from peer.
+-- Will fall back to getProcessBlocks if streaming is disabled
+-- or not supported by peer.
 streamProcessBlocks
     :: forall ctx m.
        ( BlockWorkMode ctx m
@@ -332,13 +335,13 @@ streamProcessBlocks pm diffusion nodeId desired checkpoints = do
              logInfo "streaming done"
              return ()
   where
-    loop n blocks (streamWindow, wqgM, blockChan) = do
+    loop !n !blocks (streamWindow, wqgM, blockChan) = do
         streamEntry <- atomically $ readTBQueue blockChan
         case streamEntry of
           StreamEnd         -> addBlocks blocks
-          StreamBlock block -> do
+          StreamBlock !block -> do
               let batchSize = min 64 streamWindow
-              let !n' = n + 1
+              let n' = n + 1
               when (n' `mod` 256 == 0) $
                      logInfo $ sformat ("Read block "%shortHashF%" difficulty "%int) (headerHash block)
                                         (block ^. difficultyL)

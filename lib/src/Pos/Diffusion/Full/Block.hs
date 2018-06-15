@@ -273,6 +273,8 @@ getBlocks logTrace logic recoveryHeadersMessage enqueue nodeId tipHeaderHash che
               Just (MsgBlock block) -> do
                   retrieveBlocksDo conv bvd (i - 1) (block : acc)
 
+-- | Stream some blocks from the network.
+-- Returns Nothing if streaming is disabled by the client or not supported by the peer.
 streamBlocks
     :: forall t .
        Trace IO (Severity, Text)
