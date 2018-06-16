@@ -14624,6 +14624,7 @@ license = stdenv.lib.licenses.bsd3;
 , cardano-sl-crypto-test
 , cardano-sl-db
 , cardano-sl-delegation
+, cardano-sl-delegation-test
 , cardano-sl-infra
 , cardano-sl-lrc
 , cardano-sl-lrc-test
@@ -14819,6 +14820,7 @@ cardano-sl-crypto
 cardano-sl-crypto-test
 cardano-sl-db
 cardano-sl-delegation
+cardano-sl-delegation-test
 cardano-sl-infra
 cardano-sl-lrc
 cardano-sl-lrc-test
@@ -15380,6 +15382,7 @@ license = stdenv.lib.licenses.mit;
 , cardano-sl-crypto-test
 , cardano-sl-db
 , cardano-sl-delegation
+, cardano-sl-delegation-test
 , cardano-sl-infra
 , cardano-sl-lrc
 , cardano-sl-lrc-test
@@ -15416,6 +15419,7 @@ cardano-sl-crypto
 cardano-sl-crypto-test
 cardano-sl-db
 cardano-sl-delegation
+cardano-sl-delegation-test
 cardano-sl-infra
 cardano-sl-lrc
 cardano-sl-lrc-test
@@ -16034,6 +16038,45 @@ description = "Cardano SL - delegation";
 license = stdenv.lib.licenses.mit;
 
 }) {};
+"cardano-sl-delegation-test" = callPackage
+({
+  mkDerivation
+, base
+, bytestring
+, cardano-sl-binary
+, cardano-sl-core
+, cardano-sl-crypto
+, cardano-sl-crypto-test
+, cardano-sl-delegation
+, generic-arbitrary
+, QuickCheck
+, stdenv
+, universum
+, unordered-containers
+}:
+mkDerivation {
+
+pname = "cardano-sl-delegation-test";
+version = "1.1.0";
+src = ./../delegation/test;
+libraryHaskellDepends = [
+base
+bytestring
+cardano-sl-binary
+cardano-sl-core
+cardano-sl-crypto
+cardano-sl-crypto-test
+cardano-sl-delegation
+generic-arbitrary
+QuickCheck
+universum
+unordered-containers
+];
+doHaddock = false;
+description = "Cardano SL - delegation (tests)";
+license = stdenv.lib.licenses.mit;
+
+}) {};
 "cardano-sl-explorer" = callPackage
 ({
   mkDerivation
@@ -16268,6 +16311,7 @@ license = stdenv.lib.licenses.mit;
 , cardano-sl-crypto-test
 , cardano-sl-db
 , cardano-sl-delegation
+, cardano-sl-delegation-test
 , cardano-sl-infra
 , cardano-sl-lrc
 , cardano-sl-networking
@@ -16368,6 +16412,7 @@ cardano-sl-crypto
 cardano-sl-crypto-test
 cardano-sl-db
 cardano-sl-delegation
+cardano-sl-delegation-test
 cardano-sl-lrc
 cardano-sl-ssc
 cardano-sl-txp
